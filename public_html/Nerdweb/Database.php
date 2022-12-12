@@ -58,7 +58,7 @@ namespace Nerdweb {
                 PDO::ATTR_EMULATE_PREPARES   => FALSE,
             ];
             try {
-                $this->pdo = new PDO($dsn, $this->args["user"], $this->args["password"], $opt);
+                $this->pdo = new PDO($dsn, $this->args["user"], $this->args["pass"], $opt);          
             }
             catch (PDOException $e) {
                 echo $e->getMessage();
@@ -170,7 +170,7 @@ namespace Nerdweb {
          */
         public function insertPrepared($tblname, array $dataFields, array $dataValues) {
             $valuesMAsk = implode(',', array_fill(0, count($dataFields), '?'));
-            $sql = "INSERT INTO $tblname (" . implode(",", $dataFields) . ") VALUES (" . $valuesMAsk . ")";
+            $sql = "INSERT INTO $tblname (" .  implode(", ", $dataFields) . ") VALUES (" . $valuesMAsk . ")";
             $this->preparedQuery($sql, $dataValues);
             return TRUE;
         }
@@ -191,6 +191,7 @@ namespace Nerdweb {
                 $fields = "*";
             }
             $condicoes = $this->prepareFields($condNames, $condValues);
+            
             $sufixQuery = " AND isUsed=1";
             if ($condNames === []) {
                 $sufixQuery = "isUsed=1";
@@ -209,7 +210,6 @@ namespace Nerdweb {
             if ($limitResults === 1 && isset($return[0])) {
                 $return = $return[0];
             }
-
             return $return;
         }
 
@@ -225,9 +225,26 @@ namespace Nerdweb {
          */
         public function updatePrepared($tblname, array $datafields, array $updateValues, array $condFields, array $condValues) {
             #TODO: Implementar funcao de update utilizando um esquema similar a funcao selectPrepared ou insertPrepared
-            die("nao implementado ainda");
+            if ($datafields === []) {
+                array_push($datafields, "*");  
+            }else {
+                $c = $this->prepareFields($datafields, $updateValues);
+                $colunas = implode(", ",$c);
+            }
+
+            $condicoes = $this->prepareFields($condFields, $condValues);
+            $cond = implode(',', $condicoes);
+            echo $cond;
+
+            #$sql = "UPDATE $tblname SET $colunas WHERE " . $cond;
+
+            #echo $sql;
+            #$return = $this->preparedQuery($sql, $updateValues);
+
+            #return $return;
+            
         }
 
     }
-
 }
+?>
