@@ -225,23 +225,31 @@ namespace Nerdweb {
          */
         public function updatePrepared($tblname, array $datafields, array $updateValues, array $condFields, array $condValues) {
             #TODO: Implementar funcao de update utilizando um esquema similar a funcao selectPrepared ou insertPrepared
-            if ($datafields === []) {
-                array_push($datafields, "*");  
-            }else {
+            if ($condFields === []) {
                 $c = $this->prepareFields($datafields, $updateValues);
                 $colunas = implode(", ",$c);
+
+                $sql = "UPDATE $tblname SET $colunas";
+
+                $return = $this->preparedQuery($sql, $updateValues);
+            }else{
+                $condicoes = $this->prepareFields($condFields, $condValues);
+                $cond = implode(", ", $condicoes);
+
+                for ($i=0; $i < count($condValues); $i++) { 
+                    array_push($updateValues, $condValues[$i]);
+                }
+                
+                $c = $this->prepareFields($datafields, $updateValues);
+                $colunas = implode(", ",$c);
+
+                $sql = "UPDATE $tblname SET $colunas WHERE " . $cond;
+
+                $return = $this->preparedQuery($sql, $updateValues);
+
+                
             }
-
-            $condicoes = $this->prepareFields($condFields, $condValues);
-            $cond = implode(',', $condicoes);
-            echo $cond;
-
-            #$sql = "UPDATE $tblname SET $colunas WHERE " . $cond;
-
-            #echo $sql;
-            #$return = $this->preparedQuery($sql, $updateValues);
-
-            #return $return;
+            return $return;
             
         }
 
