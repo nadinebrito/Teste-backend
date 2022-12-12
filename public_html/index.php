@@ -27,11 +27,19 @@ echo '<br><br>Matéria:';
 print_r($sel[0]['conteudo']);
 */
 
-#UPDATE fazendo
+#UPDATE OK (Pensar se devo fazer o update dinamico ou deixo assim msm)
+/*
 $condicao_campo=['id'];
 $condicao_valor=[6];
 $campos_update = ['titulo','conteudo'];
-$array_conteudo_update = ['Inutilismo em Manaus!', 'Nesse final de semana em Manaus vai rolar um show bem legal, o influencer vai tocar seus maiores hits na guitarra para o delirio dos fãs manauaras.'];
+$array_conteudo_update = ['Lucas ', 'unico dado desse tipo.'];
 $database->updatePrepared($table_name,$campos_update,$array_conteudo_update,$condicao_campo,$condicao_valor);
+*/
+/*
+#DELETE fazendo
+$condicao_delete=['id'];
+$delete_value=[2];
+$database->deletePrepared($table_name,$condicao_delete,$delete_value);
+*/
 
 ?>

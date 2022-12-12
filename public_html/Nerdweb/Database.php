@@ -174,8 +174,6 @@ namespace Nerdweb {
             $this->preparedQuery($sql, $dataValues);
             return TRUE;
         }
-
-
         /**
          * @param string     $tblname
          * @param array      $condNames
@@ -212,8 +210,6 @@ namespace Nerdweb {
             }
             return $return;
         }
-
-
         /**
          * @param string $tblname
          * @param array  $datafields
@@ -246,13 +242,23 @@ namespace Nerdweb {
                 $sql = "UPDATE $tblname SET $colunas WHERE " . $cond;
 
                 $return = $this->preparedQuery($sql, $updateValues);
-
-                
             }
             return $return;
             
         }
 
+        public function deletePrepared($tblname, array $condFields, array $condValues) {
+            $cond = $this->prepareFields($condFields, $condValues);
+            $condicao = implode(", ", $cond);
+            $sql = "DELETE FROM $tblname WHERE ". $condicao;
+            
+            $return = $this->preparedQuery($sql,$condValues);
+
+            return $return;
+
+        }
+
     }
+
 }
 ?>
