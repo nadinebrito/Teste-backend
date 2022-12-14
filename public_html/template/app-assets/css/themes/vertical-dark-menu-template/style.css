@@ -8979,17 +8979,7 @@ Cards
     border-left: 1px dashed #bdbdbd;
 }
 
-#flight-card .flight-icon
-{
-    font-size: 2.2rem;
 
-    display: block;
-
-    -webkit-transform: rotate(90deg);
-       -moz-transform: rotate(90deg);
-        -ms-transform: rotate(90deg);
-         -o-transform: rotate(90deg);
-}
 
 #flight-card .card-content-bg
 {

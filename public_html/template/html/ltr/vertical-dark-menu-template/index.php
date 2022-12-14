@@ -1,16 +1,14 @@
 <?php
-#require_once __DIR__ . "/Nerdweb/Database.php";
-#$configDB = [
-#    "host" => "localhost",
-#    "database" => "teste_backend",
- #   "user" => "root",
- #   "pass" => "s0lz1nh0"
-#];
-#$database = new \Nerdweb\Database($configDB);
+require_once __DIR__ . "/Nerdweb/Database.php";
+$configDB = [
+    "host" => "localhost",
+    "database" => "teste_backend",
+    "user" => "root",
+    "pass" => "s0lz1nh0"
+];
+$database = new \Nerdweb\Database($configDB);
 
-#$table_name = 'noticias';
-
-#echo "tudo certo por aqui";
+$table_name = 'noticias';
 
 #funciona
 #INSERT OK
@@ -18,10 +16,13 @@
 #$array_conteudo = ['Lucas Inutilismo em Manaus!', 'Nesse final de semana em Manaus vai rolar um show bem legal.'];
 #$database->insertPrepared($table_name, $array_colunas , $array_conteudo);
 
-#SELECT OK (depois mais falta padronizar o condName e o condValue)
+#SELECT OK
 
-#$sel = [];
-#$sel = $database->selectPrepared($table_name,['id'],[4],"titulo, conteudo");
+$select_cond = [];
+$select_cond_value = [];
+$select_fields = "";
+$select = [];
+$select = $database->selectPrepared($table_name,$select_cond,$select_cond_value,$select_fields);
 #print_r($sel[0]['titulo']);
 #print_r($sel[0]['conteudo']);
 
@@ -40,5 +41,6 @@ $condicao_delete=['id'];
 $delete_value=[2];
 $database->deletePrepared($table_name,$condicao_delete,$delete_value);
 */
+
 
 ?>

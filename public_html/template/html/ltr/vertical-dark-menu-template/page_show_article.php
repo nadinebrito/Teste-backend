@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
+</html>
 <!-- BEGIN: Head-->
 
 <head>
@@ -9,7 +10,7 @@
     <meta name="description" content="Materialize is a Material Design Admin Template,It's modern, responsive and based on Material Design by Google.">
     <meta name="keywords" content="materialize, admin template, dashboard template, flat admin template, responsive admin template, eCommerce dashboard, analytic dashboard">
     <meta name="author" content="ThemeSelect">
-    <title>Página de Notícias</title>
+    <title>Artigo</title>
     <link rel="apple-touch-icon" href="../../../app-assets/images/favicon/apple-touch-icon-152x152.png">
     <link rel="shortcut icon" type="image/x-icon" href="../../../app-assets/images/favicon/favicon-32x32.png">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -28,7 +29,9 @@
 <!-- END: Head-->
 
 <body class="vertical-layout page-header-light vertical-menu-collapsible vertical-dark-menu preload-transitions 2-columns   " data-open="click" data-menu="vertical-dark-menu" data-col="2-columns">
-
+    <?php
+    include 'index.php';
+    ?>
     <!-- BEGIN: Header-->
     <header class="page-topbar" id="header">
     </header>
@@ -42,13 +45,15 @@
                 <div class="container">
                     <div class="row">
                         <div class="col s12 m6 l6">
-                            <h5 class="breadcrumbs-title mt-0 mb-0"><span>Últimas Notícias</span></h5>
+                            <h5 class="breadcrumbs-title mt-0 mb-0"><span>Artigo</span></h5>
                         </div>
                         <div class="col s12 m6 l6 right-align-md">
                             <ol class="breadcrumbs mb-0">
-                                <li class="breadcrumb-item"><a href="page_list_news.html">Lista de Notícias</a>
+                                <li class="breadcrumb-item"><a href="page_list_news.php">Lista de Notícias</a>
                                 </li>
-                                <li class="breadcrumb-item active">Últimas Notícias
+                                <li class="breadcrumb-item"><a href="page_show_news.php">Últimas Notícias</a>
+                                </li>
+                                <li class="breadcrumb-item active">Artigo
                                 </li>
                             </ol>
                         </div>
@@ -60,47 +65,30 @@
                     <div class="section mt-2" id="blog-list">
                         <div class="row">
                             <!-- Blog Style Two -->
-                        </div>
-                        <div class="row">
-                            <!-- Share markets News -->
-                            <div class="col s12 m6 l4">
-                                <div class="card-panel border-radius-6 white-text gradient-45deg-deep-purple-blue card-animation-2">
-                                    <h6 class="mt-5"><b><a href="#" class="white-text">Sensex Nosedives 850 Points</a></b></h6>
-                                    <span>Share markets on Thursday: Prominent losers in the Sensex pack were Maruti, ICICI Bank, Reliance and Yes
-                                        Bank.
-                                    </span>
-                                    <div class="display-flex justify-content-between flex-wrap mt-4">
-                                        <a href="#" class="white-text"> Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- USA News -->
-                            <div class="col s12 m6 l4">
-                                <div class="card-panel border-radius-6 white-text gradient-45deg-purple-deep-orange card-animation-2">
-                                    <h6 class="mt-5"><b><a href="#" class="white-text">Famous for stylish jewelries</a></b></h6>
-                                    <span>Sophia Fiori is one of the most famous jewelry designer in the USA. Sophia Fiori has got legacy of four
-                                        generations.
-                                    </span>
-                                    <div class="display-flex justify-content-between flex-wrap mt-4">
-                                        <a href="#" class="white-text"> Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Fasion News -->
-                            <div class="col s12 m6 l4">
-                                <div class="card-panel border-radius-6 white-text gradient-45deg-indigo-light-blue card-animation-2">
-                                    <h6 class="mt-5"><b><a href="#" class="white-text">Lagom Way to Try Fall rends</a></b></h6>
-                                    <span>You're not going to try every fall trend we write about here at Who What Wear, but where's the fun in not
-                                        trying any at all?
-                                    </span>
-                                    <div class="display-flex justify-content-between flex-wrap mt-4">
-                                        <a href="#" class="white-text"> Read More</a>
-                                    </div>
-                                </div>
-                            </div>
+                            <!-- Mostrar o artigo -->
+                            <?php
+                            $id = $_GET['id'];
+                            echo '<div class="col s22 m6 24">';
+                            echo '<div class="card-panel border-radius-6 white-text gradient-45deg-indigo-light-blue card-animation-2">';
+                            echo '<h6 class="mt-5"><b class="white-text">';
+                            echo '<span>';
+                            for ($i=0; $i < count($select) ; $i++) { 
+                                if($select[$i]["id"]==$id){
+                                    print_r($select[$i]["titulo"]);
+                                    echo '#';
+                                    print_r($select[$i]["id"]);
+                                    echo '<br><h7 class="mt-5"><b class="white-text"><span>';
+                                    print_r($select[$i]["data"]);
+                                    echo '</span><br><br><span>';
+                                    print_r($select[$i]["conteudo"]);
+                                    echo '</span></div></div>';
+                                }
+                            }
+                            ?>
+                            
                         </div>
                 </div>
-                <div class="content-overlay"></div>
+                
             </div>
         </div>
     </div>
@@ -113,7 +101,6 @@
             <div class="container"><span>&copy; 2020 <a href="http://themeforest.net/user/pixinvent/portfolio?ref=pixinvent" target="_blank">PIXINVENT</a> All rights reserved.</span><span class="right hide-on-small-only">Design and Developed by <a href="https://pixinvent.com/">PIXINVENT</a></span></div>
         </div>
     </footer>
-
 
     <!-- END: Footer-->
     <!-- BEGIN VENDOR JS-->
