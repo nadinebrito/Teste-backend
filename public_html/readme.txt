@@ -11,9 +11,9 @@ por exemplo, os arquivos 'app-assets/js/custom/custom-scritps.js' e 'app-assets/
 [id, data, url_noticia, titulo, conteudo]; #DONE
 
 3) Utilizar o template do Materialize para implementar a interface de leitura de notícias 
-em uma tabela com os campos [id, titulo, data, url_noticia]; 
+em uma tabela com os campos [id, titulo, data, url_noticia]; #DONE
 
-4) Implementar no template a adição, edição e deleção de elementos da lista de notícias.
+4) Implementar no template a adição, edição e deleção de elementos da lista de notícias.#DONE
 
 # Bônus
 

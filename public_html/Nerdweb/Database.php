@@ -128,7 +128,7 @@ namespace Nerdweb {
          *
          * @return array
          */
-        protected function executeQuery($sql, array $condValues, $fetchResult, $stmt) {
+        protected function executeQuery($sql, array $condValues, $fetchResult, $stmt) {          
             $stmt->execute($condValues);
             $this->rowCount = $stmt->rowCount();
             if (stripos($sql, "INSERT") !== FALSE ||
