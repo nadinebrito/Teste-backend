@@ -31,10 +31,12 @@
 
 <body class="vertical-layout page-header-light vertical-menu-collapsible vertical-dark-menu preload-transitions 2-columns   " data-open="click" data-menu="vertical-dark-menu" data-col="2-columns">
     <?php
-    include "index.php"
+    include "index.php";
+    $select = select($database, $table_name,[],[],"");
     ?>
     <!-- BEGIN: Header-->
     <header class="page-topbar" id="header">
+    
     </header>
     <!-- END: Header-->   
 
@@ -47,7 +49,12 @@
                     <div class="row">
                         <div class="col s12 m6 l6">
                             <h5 class="breadcrumbs-title mt-0 mb-0"><span>Lista de Notícias Cadastradas</span></h5>
+                            <br>
+                            <a href="page_news_create.php" class="waves-effect waves-light  btn"><i class="material-icons left">add_circle_outline</i> Adicionar Notícia</a>
                         </div>
+
+                        
+                        
                         <div class="col s12 m6 l6 right-align-md">
                             <ol class="breadcrumbs mb-0">
                                 <li class="breadcrumb-item"><a href="page_show_news.php">Últimas Notícias</a>
@@ -82,6 +89,8 @@
                                             <tbody>
                                                 <?php foreach ($select as $item) {
                                                     $url = "page_show_article.php?id=".$item["id"];
+                                                    $url_edit = "page_news_edit.php?id=".$item["id"];
+                                                    $url_delete = "page_news_delete.php?id=".$item["id"];
                                                     echo '<tr><td>';
                                                     print_r($item["id"]);
                                                     echo '</td><td>';
@@ -89,11 +98,11 @@
                                                     echo '</td><td>';
                                                     print_r($item["titulo"]);
                                                     echo '</td><td>';
-                                                    echo '<a href='.$url.'><i class="material-icons">remove_red_eye</i></a>';#colocar id aqui
+                                                    echo '<a href='.$url.'><i class="material-icons">remove_red_eye</i></a>';
                                                     echo '</td><td>';
-                                                    echo '<a href="page_news_edit.html"><i class="material-icons">edit</i></a>';
+                                                    echo '<a href='.$url_edit.'><i class="material-icons">edit</i></a>';
                                                     echo '</td><td>';
-                                                    echo '<a href="page_news_delete.html"><i class="material-icons">delete</i></a>';
+                                                    echo '<a href='.$url_delete.'><i class="material-icons">delete</i></a>';
                                                     echo '</td></tr>';
                                                     }
                                                 ?>

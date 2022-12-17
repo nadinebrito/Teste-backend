@@ -4,43 +4,38 @@ $configDB = [
     "host" => "localhost",
     "database" => "teste_backend",
     "user" => "root",
-    "pass" => "s0lz1nh0"
+    "pass" => ""
 ];
 $database = new \Nerdweb\Database($configDB);
 
 $table_name = 'noticias';
 
-#funciona
-#INSERT OK
-#$array_colunas = ['titulo', 'conteudo'];
-#$array_conteudo = ['Lucas Inutilismo em Manaus!', 'Nesse final de semana em Manaus vai rolar um show bem legal.'];
-#$database->insertPrepared($table_name, $array_colunas , $array_conteudo);
+function insert($database, $table_name, $insert_conteudo){
+    $colunas_insert = ['url_noticia','titulo', 'conteudo'];
 
-#SELECT OK
+    $return = $database->insertPrepared($table_name, $colunas_insert , $insert_conteudo);
+    return $return;
 
-$select_cond = [];
-$select_cond_value = [];
-$select_fields = "";
-$select = [];
-$select = $database->selectPrepared($table_name,$select_cond,$select_cond_value,$select_fields);
-#print_r($sel[0]['titulo']);
-#print_r($sel[0]['conteudo']);
+}
 
+function select($database, $table_name,$select_cond,$select_cond_value,$select_fields){
 
-#UPDATE OK (Pensar se devo fazer o update dinamico ou deixo assim msm)
-/*
-$condicao_campo=['id'];
-$condicao_valor=[6];
-$campos_update = ['titulo','conteudo'];
-$array_conteudo_update = ['Lucas ', 'unico dado desse tipo.'];
-$database->updatePrepared($table_name,$campos_update,$array_conteudo_update,$condicao_campo,$condicao_valor);
-*/
-/*
-#DELETE ok
-$condicao_delete=['id'];
-$delete_value=[2];
-$database->deletePrepared($table_name,$condicao_delete,$delete_value);
-*/
+    $return = $database->selectPrepared($table_name,$select_cond,$select_cond_value,$select_fields);
+    return $return;
+}
+ 
+function update($database, $table_name,$array_conteudo_update,$condicao_campo,$condicao_valor){
+    $campos_update = ['url_noticia','titulo', 'conteudo'];
 
+    $return = $database->updatePrepared($table_name,$campos_update,$array_conteudo_update,$condicao_campo,$condicao_valor);
+    return $return; 
+
+}
+
+function delete($database, $table_name, $condicao_delete,$delete_value){
+    
+    $return = $database->deletePrepared($table_name,$condicao_delete,$delete_value);
+    return $return;
+}
 
 ?>

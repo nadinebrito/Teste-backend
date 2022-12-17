@@ -29,7 +29,10 @@
 <!-- END: Head-->
 
 <body class="vertical-layout page-header-light vertical-menu-collapsible vertical-dark-menu preload-transitions 2-columns   " data-open="click" data-menu="vertical-dark-menu" data-col="2-columns">
-    <?php include 'index.php'?>
+    <?php 
+    include 'index.php';
+    $select = select($database, $table_name,[],[],"");
+    ?>
     <!-- BEGIN: Header-->
     <header class="page-topbar" id="header">
     </header>
@@ -69,10 +72,11 @@
                                 echo '<div class="col s12 m6 l4">';
                                 echo '<div class="card-panel border-radius-6 white-text gradient-45deg-indigo-light-blue card-animation-2">';
                                 echo '<h6 class="mt-5"><b><a href='.$url.' class="white-text" >';
-                                echo '<span>';
-                                print_r($item["titulo"]);
                                 echo '#';
                                 print_r($item["id"]);
+                                echo '-';
+                                echo '<span>';
+                                print_r($item["titulo"]);
                                 echo '</span></a></b></h6><br><span>';
                                 print_r($item["conteudo"]);
                                 echo '</span></div></div>';    

@@ -10,7 +10,7 @@
     <meta name="description" content="Materialize is a Material Design Admin Template,It's modern, responsive and based on Material Design by Google.">
     <meta name="keywords" content="materialize, admin template, dashboard template, flat admin template, responsive admin template, eCommerce dashboard, analytic dashboard">
     <meta name="author" content="ThemeSelect">
-    <title>Artigo</title>
+    <title>Ler Artigo</title>
     <link rel="apple-touch-icon" href="../../../app-assets/images/favicon/apple-touch-icon-152x152.png">
     <link rel="shortcut icon" type="image/x-icon" href="../../../app-assets/images/favicon/favicon-32x32.png">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -31,6 +31,7 @@
 <body class="vertical-layout page-header-light vertical-menu-collapsible vertical-dark-menu preload-transitions 2-columns   " data-open="click" data-menu="vertical-dark-menu" data-col="2-columns">
     <?php
     include 'index.php';
+    $select = select($database, $table_name,[],[],"");
     ?>
     <!-- BEGIN: Header-->
     <header class="page-topbar" id="header">
@@ -74,13 +75,17 @@
                             echo '<span>';
                             for ($i=0; $i < count($select) ; $i++) { 
                                 if($select[$i]["id"]==$id){
-                                    print_r($select[$i]["titulo"]);
                                     echo '#';
                                     print_r($select[$i]["id"]);
-                                    echo '<br><h7 class="mt-5"><b class="white-text"><span>';
+                                    echo ' - ';
+                                    print_r($select[$i]["titulo"]);
+                                    echo '<br><h7 class="mt-5"><b class="white-text"><br><span>';
                                     print_r($select[$i]["data"]);
                                     echo '</span><br><br><span>';
                                     print_r($select[$i]["conteudo"]);
+                                    echo '</span><br><br><br><span>';
+                                    echo '<p>Fonte:</p>';
+                                    print_r($select[$i]["url_noticia"]);
                                     echo '</span></div></div>';
                                 }
                             }
